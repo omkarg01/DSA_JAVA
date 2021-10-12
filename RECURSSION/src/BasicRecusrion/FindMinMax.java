@@ -1,3 +1,4 @@
+package BasicRecusrion;
 public class FindMinMax {
     public static void main(String[] args) {
         int[] arr = { 4, 7, 2, 5, 1 };

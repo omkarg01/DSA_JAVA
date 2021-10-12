@@ -1,3 +1,4 @@
+package BasicRecusrion;
 public class FirstUpperCase {
     public static void main(String[] args) {
         char n = first("omKar", 0);

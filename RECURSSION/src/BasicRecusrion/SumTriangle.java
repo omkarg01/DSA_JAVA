@@ -1,3 +1,4 @@
+package BasicRecusrion;
 import java.util.Arrays;
 
 public class SumTriangle {
