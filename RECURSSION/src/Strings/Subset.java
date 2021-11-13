@@ -7,10 +7,12 @@ public class Subset {
     public static void main(String[] args) {
         // subseq("", "abc");
         // System.out.println(subSeqAscci("", "abc"));
-        ArrayList<ArrayList<Integer>> ans = subSeqItrDuplicate(new int[] { 1, 2, 2 });
-        for (ArrayList<Integer> arrayList : ans) {
-            System.out.println(arrayList);
-        }
+        // ArrayList<ArrayList<Integer>> ans = subSeqItrDuplicate(new int[] { 2, 1, 2
+        // });
+        // for (ArrayList<Integer> arrayList : ans) {
+        // System.out.println(arrayList);
+        // }
+
 
     }
 
@@ -83,6 +85,7 @@ public class Subset {
     }
 
     private static ArrayList<ArrayList<Integer>> subSeqItrDuplicate(int[] arr) {
+        Arrays.sort(arr);
         ArrayList<ArrayList<Integer>> outerList = new ArrayList<>();
         ArrayList<Integer> empList = new ArrayList<>();
         outerList.add(empList);
@@ -105,5 +108,8 @@ public class Subset {
 
         return outerList;
     }
+
+    // Permutations
+   
 
 }
