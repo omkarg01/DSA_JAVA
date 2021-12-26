@@ -1,4 +1,3 @@
-import javax.swing.table.DefaultTableCellRenderer;
 
 public class LL {
 
@@ -33,7 +32,7 @@ public class LL {
         tail.next = null;
     }
 
-    public ListNode reverseItr(ListNode head) {
+    public static ListNode reverseItr(ListNode head) {
         if (head.next == null || head == null) {
             return head;
         }
@@ -51,49 +50,7 @@ public class LL {
                 next = next.next;
             }
         }
-
         return prev;
-    }
-
-    public ListNode reverseInBetn(ListNode head, int l, int r) {
-        if (l == r) {
-            return head;
-        }
-
-        ListNode current = head;
-        ListNode prev = null;
-        for (int i = 0; i < l - 1; i++) {
-            prev = current;
-            current = current.next;
-        }
-
-        ListNode last = prev;
-        prev = current;
-        ListNode pres = prev.next;
-        ListNode next = pres.next;
-
-        for (int i = 0; pres != null && i < r - l; i++) {
-            pres.next = prev;
-
-            prev = pres;
-            pres = next;
-            if (next != null) {
-                next = next.next;
-            } else {
-                next = null;
-            }
-        }
-
-        // prev.next = pres;
-        current.next = pres;
-
-        if (last != null) {
-            last.next = prev;
-        } else {
-            return prev;
-        }
-
-        return head;
     }
 
     public void insert(int index, int value) {
@@ -146,7 +103,6 @@ public class LL {
                 node = node.next;
             }
         }
-
     }
 
     public void display() {
@@ -242,10 +198,186 @@ public class LL {
 
             temp1 = hs.next;
             hs.next = hf;
-            hs = temp1; 
+            hs = temp1;
         }
 
         return head;
+    }
+
+    public ListNode reverseInBetn(ListNode head, int l, int r) {
+        if (l == r) {
+            return head;
+        }
+
+        ListNode current = head;
+        ListNode prev = null;
+        for (int i = 0; i < l - 1; i++) {
+            prev = current;
+            current = current.next;
+        }
+
+        ListNode last = prev;
+        prev = current;
+        ListNode pres = prev.next;
+        ListNode next = pres.next;
+
+        for (int i = 0; pres != null && i < r - l; i++) {
+            pres.next = prev;
+
+            prev = pres;
+            pres = next;
+            if (next != null) {
+                next = next.next;
+            } else {
+                next = null;
+            }
+        }
+
+        // prev.next = pres;
+        current.next = pres;
+
+        if (last != null) {
+            last.next = prev;
+        } else {
+            return prev;
+        }
+
+        return head;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+
+        ListNode last = head;
+        ListNode start = null;
+        ListNode prev = null;
+        ListNode pres = head;
+        ListNode next = pres.next;
+        int count = 0;
+
+        while (pres != null) {
+            count++;
+
+            for (int i = 0; i < k; i++) {
+                pres.next = prev;
+                prev = pres;
+                pres = next;
+                if (pres == null && i < k - 1) {
+                    ListNode h = reverseItr(prev);
+                    last.next = h;
+                    return head;
+                }
+
+                if (next != null) {
+                    next = next.next;
+                } else {
+                    next = null;
+                }
+            }
+
+            if (count == 1) {
+                head = prev;
+            } else {
+                last.next = prev;
+                last = start;
+            }
+
+            start = pres;
+
+            prev = null;
+
+        }
+
+        return head;
+    }
+
+    private LL.ListNode reverseKGroupAlt(LL.ListNode head2, int k) {
+
+        ListNode last = head;
+        ListNode start = null;
+        ListNode prev = null;
+        ListNode pres = head;
+        ListNode next = pres.next;
+        int count = 0;
+
+        while (next != null) {
+            count++;
+
+            if (count % 2 == 0) {
+                for (int i = 0; i < k; i++) {
+                    prev = pres;
+                    pres = next;
+                    if (next != null) {
+                        next = next.next;
+                    } else {
+                        next = null;
+                    }
+                }
+                last.next = start;
+                start = pres;
+                last = prev;
+                prev = null;
+
+            } else {
+
+                for (int i = 0; i < k; i++) {
+                    pres.next = prev;
+                    prev = pres;
+                    pres = next;
+
+                    if (next != null) {
+                        next = next.next;
+                    } else {
+                        next = null;
+                    }
+                }
+
+                if (count == 1) {
+                    head = prev;
+                } else {
+                    last.next = prev;
+                    last = start;
+                }
+
+                start = pres;
+                prev = null;
+
+            }
+        }
+
+        return head;
+    }
+
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode temp = head;
+        ListNode prev = null;
+        ListNode newHead;
+        int len = 1;
+
+        while (temp.next != null) {
+            len++;
+            prev = temp;
+            temp = temp.next;
+        }
+        
+        temp.next = head;
+        temp = head;
+        prev = null;
+
+        int itr = len - k % len;
+
+        while ( itr-- > 0) {
+            prev = temp;
+            temp = temp.next;
+        }
+
+        newHead = temp;
+        prev.next = null;
+
+        return newHead;
     }
 
     public static void main(String[] args) throws Exception {
@@ -291,13 +423,39 @@ public class LL {
         list4.insert(list4.size, 2);
         list4.insert(list4.size, 3);
         list4.insert(list4.size, 4);
-        // list4.insert(list4.size, 5);
+        list4.insert(list4.size, 5);
+        list4.insert(list4.size, 6);
+        list4.insert(list4.size, 7);
+        list4.insert(list4.size, 8);
+        list4.insert(list4.size, 9);
+        list4.insert(list4.size, 10);
+        list4.insert(list4.size, 11);
+        list4.insert(list4.size, 12);
 
-        list4.display();
         // boolean palin = list4.isPalindrome(list4.head);
         // System.out.println(palin);
 
-        ListNode hNode = list4.reorderList(list4.head);
-        list4.display(hNode);
+        // ListNode hNode = list4.reorderList(list4.head);
+        // list4.display(hNode);
+
+        // list4.display();
+        // ListNode hNode1 = list4.reverseKGroup(list4.head, 4);
+        // list4.display(hNode);
+
+        // ListNode hNode = list4.reverseKGroupAlt(list4.head, 3);
+        // list4.display(hNode);
+
+        LL list5 = new LL();
+        list5.insert(list5.size, 1);
+        list5.insert(list5.size, 2);
+        list5.insert(list5.size, 3);
+        list5.insert(list5.size, 4);
+        list5.insert(list5.size, 5);
+
+        list5.display();
+        ListNode hNode = list5.rotateRight(list5.head, 13);
+        list5.display(hNode);
+
     }
+
 }
