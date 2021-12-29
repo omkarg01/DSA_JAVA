@@ -10,15 +10,15 @@ import java.util.List;
 public class Permutations {
     public static void main(String[] args) {
 
-        // ArrayList<String> ans = permutation("", "abc");
-        // System.out.println(ans);
+        ArrayList<String> ans = permutation("", "abc");
+        System.out.println(ans);
 
         // int n = permutationCount("", "abc");
         // System.out.println(n);
 
       
-        ArrayList<String> ans = dice("", 4);
-        System.out.println(ans);
+        // ArrayList<String> ans = dice("", 4);
+        // System.out.println(ans);
 
     }
 
