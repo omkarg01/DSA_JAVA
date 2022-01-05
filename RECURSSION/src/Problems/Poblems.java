@@ -17,6 +17,8 @@ public class Poblems {
         // String str = countAndSay(4);
         // System.out.println(str);
 
+
+
         // List<String> dict = new ArrayList<>();
         // dict.add("aaaa");
         // dict.add("aaa");
@@ -24,15 +26,23 @@ public class Poblems {
 
         // System.out.println(b);
 
-        List<String> dict = new ArrayList<>();
-        dict.add("cat");
-        dict.add("cats");
-        dict.add("and");
-        dict.add("sand");
-        dict.add("dog");
 
-        List<String> l = wordBreakII(dict, "", "catsanddog");
-        System.out.println(l);
+
+        // List<String> dict = new ArrayList<>();
+        // dict.add("cat");
+        // dict.add("cats");
+        // dict.add("and");
+        // dict.add("sand");
+        // dict.add("dog");
+
+        // List<String> l = wordBreakII(dict, "", "catsanddog");
+        // System.out.println(l);
+
+
+        
+        
+
+
     }
 
     private static List<String> wordBreakII(List<String> dict, String p, String up) {

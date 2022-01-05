@@ -12,7 +12,6 @@ public class WordBreak {
     }
 
     public static List<String> wordBreak(String s, List<String> wordDict) {
-        
         return recursiveList(wordDict, "", s);
     }
 
