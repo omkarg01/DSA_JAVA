@@ -59,9 +59,9 @@ public class Poblems {
                 List<String> comb = wordBreakII(dict, p + " " + left, up.substring(i, up.length()));
                 list.addAll(comb);
             }
-        }
+        
 
-        return list;
+        // return list;
     }
 
     public static List<String> permutationStrings(String p, String up) {
