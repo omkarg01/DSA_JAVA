@@ -1,24 +1,29 @@
 package Backtracking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NQueens {
     public static void main(String[] args) {
         boolean[][] board = new boolean[4][4];
-        System.out.println(queens(board, 0));
+        // System.out.println(queens(board));
+        List<List<String>> result = new ArrayList<>();
+        queens(board, 0, result);
+        // display(board);
+        System.out.println(result);
     }
-
-    private static int queens(boolean[][] board, int row) {
+    private static int queens(boolean[][] board, int row, List<List<String>> ans){
         if (row == board.length) {
-            display(board);
-            System.out.println();
+            ans.add(display(board));
+            // System.out.println();
             return 1;
         }
 
         int count = 0;
-
-        for (int col = 0; col < board[0].length; col++) {
+        for (int col = 0; col < board.length; col++) {
             if (isSafe(board, row, col)) {
                 board[row][col] = true;
-                count += queens(board, row + 1);
+                count += queens(board, row + 1, ans);
                 board[row][col] = false;
             }
         }
@@ -27,13 +32,14 @@ public class NQueens {
     }
 
     private static boolean isSafe(boolean[][] board, int row, int col) {
+        
         // check vertical
         for (int i = 0; i < row; i++) {
             if (board[i][col]) {
                 return false;
             }
         }
-
+        
         // left diagonal
         int maxLeft = Math.min(row, col);
         for (int i = 1; i <= maxLeft; i++) {
@@ -52,17 +58,22 @@ public class NQueens {
         return true;
     }
 
-    private static void display(boolean[][] board) {
+    private static List<String> display(boolean[][] board) {
+        List<String> list = new ArrayList<>();
         for (boolean[] row : board) {
+            String r = "";
             for (boolean elem : row) {
                 if (elem) {
-                    System.out.print("Q ");
+                    r += "Q";
                 } else {
-                    System.out.print("X ");
+                    r += ".";
                 }
             }
-            System.out.println();
+            list.add(r);
+            // System.out.println();
         }
+
+        return list;
     }
 
 
