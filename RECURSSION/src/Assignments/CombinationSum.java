@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class CombinationSum {
     public static void main(String[] args) {
-        // List<List<Integer>> list = combinationSum(new int[] { 1, 2, 3 }, 5);
-        // System.out.println(list);
+        List<List<Integer>> list = combinationSum(new int[] { 1, 2, 3 }, 5);
+        System.out.println(list);
 
-        System.out.println(combinationSum(new int[]{7, 2, 6, 5}, 16));
+        // System.out.println(combinationSum(new int[]{7, 2, 6, 5}, 16));
     }
 
     static ArrayList<ArrayList<Integer>> combinationSum(ArrayList<Integer> A, int B)
